@@ -7,11 +7,10 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.stream.Collectors;
 
 public class subPage extends Thread {
-    public static ArrayList<Auction> auctions = new ArrayList<Auction>();
-
     public int pageIndex;
     public AuctionsGSON auctionGSON;
     public URL pageURL;
@@ -45,7 +44,7 @@ public class subPage extends Thread {
             getGSON();
 
             for(Auction a: auctionGSON.auctions) {
-                auctions.add(a);
+                Main.currAuctions.put((a.uuid), a);
             }
 
         } catch (Exception e) {
